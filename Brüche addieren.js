@@ -42,7 +42,7 @@ function addieren (array,array1)
     let nenner = 0;
     let zähler = 0;
     let ganze = 0;
-    
+    //wäre besser mit kgv
     nenner = array[2] * array1[2];
     zähler = (array[2] * array1[1]) + (array1[2] * array[1]);
     ganze = array[0] + array1[0];
@@ -55,7 +55,7 @@ function addieren (array,array1)
     zähler /= Teiler;
 
     
-    console.log ("gekürtzt: " + ganze + "," + zähler + "," + nenner);
+    console.log ("gekürtzt: " + ganze + "," + zähler + "/" + nenner);
 }
 
 
