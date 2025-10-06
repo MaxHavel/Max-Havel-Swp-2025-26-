@@ -1,6 +1,6 @@
 import { assertEquals, assertThrows } from "https://deno.land/std/testing/asserts.ts";
 
-// Importiere die Bruch-Klasse aus dem Hauptprogramm
+
 import { Bruch } from "./Brüche addieren.js";
 
 Deno.test("Bruch.fromString erstellt korrektes Objekt", () => {
