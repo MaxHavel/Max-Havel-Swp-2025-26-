@@ -7,3 +7,4 @@ Bsp.
 let a;
 --> a = (Math.random() * 100)
 Math.floor (a)
+
