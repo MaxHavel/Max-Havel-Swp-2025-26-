@@ -1,7 +1,13 @@
-import { assertEquals, assertThrows } from "https://deno.land/std/testing/asserts.ts";
+import { assertEquals, assertThrows, assert } from "https://deno.land/std/testing/asserts.ts";
 
+import { Bruch, addiere } from "./Brüche_addieren.ts";
+{
+    "deno.enable"; true
+    "deno.lint"; true
+    "deno.unstable"; false
+}
+declare const Deno: any;
 
-import { Bruch } from "./Brüche_addieren.ts";
 
 Deno.test("Bruch.fromString erstellt korrektes Objekt", () => {
   const b = Bruch.fromString("3 1/2");
@@ -13,10 +19,9 @@ Deno.test("Bruch.fromString erstellt korrektes Objekt", () => {
 Deno.test("Addition von Brüchen funktioniert", () => {
   const b1 = Bruch.fromString("1 1/2");
   const b2 = Bruch.fromString("2 1/2");
-  const summe = b1.addiere(b2);
-  assertEquals(summe.ganze, 3);
-  assertEquals(summe.zaehler, 2);
-  assertEquals(summe.nenner, 2);
+  const summe = addiere(b1, b2);
+  // Ergebnis wird gekürzt => 4 0/1
+  assert(summe.equals(new Bruch(4, 0, 1)));
 });
 
 Deno.test("Bruch.toString gibt korrekten String zurück", () => {
@@ -34,3 +39,5 @@ Deno.test("ggt berechnet größten gemeinsamen Teiler", () => {
   assertEquals(Bruch.ggt(12, 8), 4);
   assertEquals(Bruch.ggt(15, 5), 5);
 });
+
+
