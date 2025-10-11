@@ -60,8 +60,8 @@ export function addiere(a: Bruch, b: Bruch): Bruch {
 
 //von KI
 if (typeof (globalThis as any).Deno !== "undefined" ? (import.meta as any).main : false) {
-  const b1 = Bruch.fromString("30 2/2");
-  const b2 = Bruch.fromString("10 2/2");
+  const b1 = Bruch.fromString("30 2/20");
+  const b2 = Bruch.fromString("14 2/100");
   const summe = addiere(b1, b2);
   console.log("Summe:", summe.toString());
 }
