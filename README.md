@@ -11,3 +11,19 @@ Math.floor (a)
 wenn ich es richtig verstanden habe ist die chace sehr gering, dass beim Testen das richitge rauskommt weil man die verschiedenen Brüche mit anderen Zahlen erweitert.
 
 ich lasse zwei Lösungsansätzte stehen 
+
+------------------------------------------------------
+HÜ 
+deno tests liste mit 10 primzahlen und 10 keine und dann mit true und false returnen 
+
+funktionierender Debugger:
+![alt text](image.png)
+
+function selbst im debugger aufgerufen:
+![alt text](image-1.png)
+
+Variablen Werte geändert:
+![alt text](image-2.png)
+
+Hinweis: in den screenshot ist noch ein alter debugger
+habe jetzt einen anderen aber beide funktionieren 

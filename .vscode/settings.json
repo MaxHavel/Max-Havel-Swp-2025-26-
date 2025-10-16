@@ -1,0 +1,12 @@
+{
+    "csharp.format.openBraceOnSameLine": true,
+  "csharp.format.enable": true,
+  "FSharp.suggestGitignore": true,
+  
+  "deno.enable": true,
+  "deno.lint": true,
+  "deno.unstable": true,
+  "deno.suggest.imports.hosts": {
+    "https://deno.land": true
+  }
+}
