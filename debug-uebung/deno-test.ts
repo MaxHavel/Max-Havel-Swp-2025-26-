@@ -1,5 +1,5 @@
 import { assertEquals } from "https://deno.land/std@0.224.0/assert/mod.ts";
-import { primzahl } from "./primzahl.ts"; // Passe den Pfad an
+import { primzahl } from "./primzahl.ts"; 
 
 Deno.test("Primzahlen erkennen", () => {
   const primzahlen = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29];
