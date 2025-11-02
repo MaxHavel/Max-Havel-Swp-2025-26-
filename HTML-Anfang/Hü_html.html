@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML Basics & Interessante Elemente</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f9fafc;
+    color: #222;
+    line-height: 1.6;
+    padding: 2rem;
+  }
+  section {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  h1 {
+    color: #0077cc;
+  }
+  h2 {
+    color: #005fa3;
+    margin-top: 0;
+  }
+  code {
+    background: #eee;
+    padding: 2px 4px;
+    border-radius: 4px;
+  }
+</style>
+</head>
+<body>
+
+  <h1>Willkommen zu HTML Basics & Interessanten Elementen</h1>
+  <p>Diese Seite zeigt grundlegende HTML-Elemente wie <code>&lt;h1&gt;</code> und <code>&lt;p&gt;</code> sowie einige spannende HTML5-Tags aus der <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements" target="_blank">MDN Referenz</a>.</p>
+
+  <section>
+    <h2>1. Überschrift & Absatz</h2>
+    <p>Dies ist ein Absatz unter einer Überschrift. Absätze strukturieren Text in logische Blöcke, damit der Inhalt lesbar bleibt.</p>
+  </section>
+
+  <section>
+    <h2>2. Bild mit Beschriftung (&lt;figure&gt;)</h2>
+    <figure>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg" width="100" alt="HTML5 Logo">
+      <figcaption>Das offizielle HTML5-Logo.</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <h2>3. Zusammenklappbare Info (&lt;details&gt; / &lt;summary&gt;)</h2>
+    <details>
+      <summary>Was ist HTML?</summary>
+      <p>HTML ist die Standard-Auszeichnungssprache des Webs. Sie beschreibt die Struktur von Webseiten.</p>
+    </details>
+  </section>
+
+  <section>
+    <h2>4. Dialogfenster (&lt;dialog&gt;)</h2>
+    <dialog id="meinDialog">
+      <p>Das ist ein einfaches Beispiel eines Dialogfensters.</p>
+      <button onclick="meinDialog.close()">Schließen</button>
+    </dialog>
+  </section>
+
+  <section>
+    <h2>5. Fortschrittsanzeige (&lt;progress&gt;)</h2>
+    <p>Download-Status:</p>
+    <progress value="60" max="100"></progress>
+  </section>
+
+  <section>
+    <h2>6. Hervorhebung (&lt;mark&gt;) & Abkürzung (&lt;abbr&gt;)</h2>
+    <p>Das ist ein <mark>wichtiger</mark> Hinweis.</p>
+    <p><abbr title="Cascading Style Sheets">CSS</abbr> wird genutzt, um Webseiten zu gestalten.</p>
+  </section>
+
+  <section>
+    <h2>7. Tastenkombination (&lt;kbd&gt;)</h2>
+    <p>Zum Speichern drücke <kbd>Ctrl</kbd> + <kbd>S</kbd>.</p>
+  </section>
+
+  <section>
+    <h2>8. Audio & Video</h2>
+    <audio controls>
+      <source src="https://www.w3schools.com/html/horse.mp3" type="audio/mpeg">
+      Dein Browser unterstützt das Audio-Tag nicht.
+    </audio>
+    <video controls width="250">
+      <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+      Dein Browser unterstützt das Video-Tag nicht.
+    </video>
+  </section>
+
+  <section>
+    <h2>9. Zeitangabe (&lt;time&gt;)</h2>
+    <p>Heute ist der <time datetime="2025-11-02">2. November 2025</time>.</p>
+  </section>
+
+  <section>
+    <h2>10. Canvas Beispiel</h2>
+    <canvas id="canvas" width="200" height="100" style="border:1px solid #ccc;"></canvas>
+  </section>
+
+  <script>
+    const ctx = document.getElementById("canvas").getContext("2d");
+    ctx.fillStyle = "#0077cc";
+    ctx.fillRect(20, 20, 160, 60);
+    ctx.fillStyle = "white";
+    ctx.font = "16px sans-serif";
+    ctx.fillText("Canvas Demo", 45, 55);
+  </script>
+
+</body>
+</html>

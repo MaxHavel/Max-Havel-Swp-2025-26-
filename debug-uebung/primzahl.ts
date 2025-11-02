@@ -9,7 +9,7 @@ export function primzahl (n: number): [boolean, string]{
             return  [false,  (n) + " ist keine Primzahl"];
         }
     }
-    return [true, (n)+ " ist eine Primzahl"]
+    return [true, (n) + " ist eine Primzahl"]
 }
 for (let i = 0; i < 20; i++) {
 console.log (primzahl(Math.ceil (Math.random() * 100)));

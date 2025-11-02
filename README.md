@@ -25,5 +25,11 @@ function selbst im debugger aufgerufen:
 Variablen Werte geändert:
 ![alt text](image-2.png)
 
+--> Bilder im Bilder Folder Link funtioniert nicht mehr
+
 Hinweis: in den screenshot ist noch ein alter debugger
 habe jetzt einen anderen aber beide funktionieren 
+
+
+HÜ zum machen 
+cheatshet durchlesen
