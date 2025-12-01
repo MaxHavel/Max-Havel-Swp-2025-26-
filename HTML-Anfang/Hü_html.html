@@ -1,65 +1,66 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <link rel="stylesheet" href ="css_style.css">
+  <link rel="stylesheet" href="css_style.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>!Grüß Gott!</title>
 </head>
 <body>
-
   <hr>
   <h1>SWP HÜ HTML elements</h1>
   <hr>
-<p> <a href="https://www.spengergasse.at/" >Spengergasse</a> </p>
-  <section>
-    <h2>1. Überschrift & Absatz</h2>
-    <p>Text in einer section unter einer Überschrift.</p>
-  </section>
 
-  <section>
-    <h2>2. Bild </h2>
+  <p><a href="https://www.spengergasse.at/">Spengergasse</a></p>
+
+  <div class="flex">
+    <h2>1. Überschrift & Absatz</h2>
+    <p>Text in einem div unter einer Überschrift.</p>
+  </div>
+
+  <div class="flex">
+    <h2>2. Bild</h2>
     <figure>
       <img src="https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg" width="100" alt="HTML5 Logo">
-      <p>HTML 5 Logo. </p>
+      <p>HTML 5 Logo.</p>
     </figure>
-  </section>
+  </div>
 
-  <section>
+  <div class="flex">
     <h2>3. Zusammenklappbare Info (&lt;details&gt; und &lt;summary&gt;)</h2>
     <details>
       <summary>Ausklappen</summary>
       <p>Hallo</p>
     </details>
-  </section>
+  </div>
 
-  <section>
+  <div class="block-4">
     <h2>4. Dialogfenster (&lt;dialog&gt;)</h2>
     <dialog id="meinDialog">
       <p>Grüß Gott</p>
       <button onclick="meinDialog.close()">Schließen</button>
     </dialog>
     <button onclick="meinDialog.showModal()">Klick mal</button>
-  </section>
+  </div>
 
-  <section>
+  <div class="block-5">
     <h2>5. Fortschrittsanzeige (&lt;progress&gt;)</h2>
     <p>Status:</p>
     <progress value="60" max="100"></progress>
-  </section>
+  </div>
 
-  <section>
+  <div class="block-6">
     <h2>6. Hervorhebung (&lt;mark&gt;) & Abkürzung (&lt;abbr&gt;)</h2>
-    <p> <mark>wichtiger</mark> Hinweis</p>
+    <p><mark>wichtiger</mark> Hinweis</p>
     <p><abbr title="Cascading Style Sheets">HTML</abbr> wird hier benutzt</p>
-  </section>
+  </div>
 
-  <section>
+  <div class="block-7">
     <h2>7. Tastenkombination (&lt;kbd&gt;)</h2>
     <p>Speichern -> <kbd>Ctrl</kbd> + <kbd>S</kbd>.</p>
-  </section>
+  </div>
 
-  <section>
+  <div class="block-8">
     <h2>8. Audio & Video</h2>
     <audio controls>
       <source src="https://www.w3schools.com/html/horse.mp3" type="audio/mpeg">
@@ -67,17 +68,17 @@
     <video controls width="250">
       <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
     </video>
-  </section>
+  </div>
 
-  <section>
+  <div class="block-9">
     <h2>9. Zeitangabe (&lt;time&gt;)</h2>
     <p><time datetime="2025-11-02">2. November 2025</time>.</p>
-  </section>
+  </div>
 
-  <section>
+  <div class="block-10">
     <h2>10. Canvas Beispiel</h2>
     <canvas id="canvas" width="200" height="100" style="border:1px solid #ccc;"></canvas>
-  </section>
+  </div>
 
   <script>
     const ctx = document.getElementById("canvas").getContext("2d");
@@ -88,21 +89,21 @@
     ctx.fillText("Canvas Demo", 45, 55);
   </script>
 
-  <section>
-    <h2> 11. Variablen </h2>
-    <li> Die Spannung als Variable <var> U </var> und die Stromstärke <var> I </var></li>
-    <p> Funktioniert dann besser mit css</p>
-  </section>
+  <div class="block-11">
+    <h2>11. Variablen</h2>
+    <li>Die Spannung als Variable <var>U</var> und die Stromstärke <var>I</var></li>
+    <p>Funktioniert dann besser mit css</p>
+  </div>
 
-  <section> 
-    <h2> 12. Foto</h2>
+  <div class="block-12">
+    <h2>12. Foto</h2>
     <img
-    class = "bild"
-    alt = "Foto von Curt von François"
-      src = "https://de.wikipedia.org/wiki/Wikipedia:Hauptseite#/media/Datei:Curt-vp-1.jpg"
-      />
-      <p> Curt von François (1852–1931) war ein preußischer Offizier und Afrikaforscher. </p>
-  </section>
+      class="bild"
+      alt="Foto von Curt von François"
+      src="https://de.wikipedia.org/wiki/Wikipedia:Hauptseite#/media/Datei:Curt-vp-1.jpg"
+    />
+    <p>Curt von François (1852–1931) war ein preußischer Offizier und Afrikaforscher.</p>
+  </div>
 
 </body>
 </html>
