@@ -33,3 +33,13 @@ habe jetzt einen anderen aber beide funktionieren
 
 HÜ zum machen 
 cheatshet durchlesen
+
+https://flukeout.github.io/
+zum Lernen der selectoren
+
+
+Hü: 1.12.2025
+![alt text](image.png)
+![alt text](image-1.png)
+![alt text](image-2.png)
+![alt text](image-3.png)
