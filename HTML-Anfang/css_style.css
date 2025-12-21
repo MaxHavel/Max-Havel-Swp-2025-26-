@@ -16,7 +16,7 @@ var {
     font-family: Arial, fantasy;
     border-bottom: #2c3e50 solid 2px;
 }
-div {
+di {
     width: fit-content;
     padding: 20px;
     margin-bottom: 20px;
@@ -27,8 +27,9 @@ div {
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.173);
 }
 .flex {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
+    justify-content: flex-end;
+    display:flex;
+}
+.block-4 {
+    box-align: right;
 }

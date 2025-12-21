@@ -43,3 +43,10 @@ Hü: 1.12.2025
 ![alt text](image-1.png)
 ![alt text](image-2.png)
 ![alt text](image-3.png)
+
+Spiele zum lernen:
+https://flexboxfroggy.com/#de
+https://flukeout.github.io/
+
+Website zum lernen:
+ccs.tricksgrwop
