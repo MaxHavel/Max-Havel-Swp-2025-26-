@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Uhr</title>
+</head>
+<body>
+
+
+<h2>Uhrzeit</h2>
+
+<div id="uhrzeit"></div>
+<button id="toggle">Stop</button>
+
+<script>
+    const uhr = document.getElementById("uhrzeit");
+    const btn = document.getElementById("toggle");
+
+    function updateTime() {
+        uhr.textContent = new Date().toLocaleTimeString();
+    }
+
+    let läuft = true;
+    let timer = setInterval(updateTime, 1000);
+
+    updateTime();
+
+    btn.onclick = function () {
+        if (läuft) {
+            clearInterval(timer);
+            btn.textContent = "Start";
+        } else {
+            timer = setInterval(updateTime, 1000);
+            btn.textContent = "Stop";
+        }
+        läuft = !läuft;
+    };
+</script>
+
+</body>
+</html>
