@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lieblingsessen</title>
+    <style>
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f4f4f4; }
+    </style>
+</head>
+<body>
+    <h1>Lieblingsessen</h1>
+    <button onclick="holeEssen()">Hole Essen</button>
+    <table id="essen-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Essen</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        async function holeEssen() {
+            const res = await fetch("/lieblinge");
+            const data = await res.json();
+            
+            const tbody = document.querySelector("#essen-table tbody");
+            tbody.innerHTML = "";
+            
+            for (const item of data) {
+                const tr = document.createElement("tr");
+                tr.innerHTML = `<td>${item.name}</td><td>${item.essen}</td>`;
+                tbody.appendChild(tr);
+            }
+        }
+    </script>
+</body>
+</html>

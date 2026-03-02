@@ -50,3 +50,6 @@ https://flukeout.github.io/
 
 Website zum lernen:
 ccs.tricksgrwop
+
+unique index distinct 
+zur wh 
