@@ -3,6 +3,8 @@
 const url =
     "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/123.png";
 
+const bilder: HTMLImageElement[] = [];
+
 async function holePokemon() {
     const response = await fetch(url);
     if (!response.ok) {
@@ -13,6 +15,7 @@ async function holePokemon() {
     const img = document.createElement("img");
     img.src = imgUrl;
     document.body.appendChild(img);
+    bilder.push(img);
 }
 
 document.getElementById("hole-essen")?.addEventListener("click", async () => {
@@ -31,6 +34,6 @@ document.getElementById("hole-essen")?.addEventListener("click", async () => {
 });
 
 document.getElementById("loesche-essen")?.addEventListener("click", () => {
-    const tbody = document.getElementById("tabelle");
-    if (tbody) tbody.innerHTML = "";
+    bilder.forEach((img) => img.remove());
+    bilder.length = 0;
 });
