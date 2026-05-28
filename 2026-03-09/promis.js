@@ -1,24 +1,38 @@
-function checkPasswort(passwort) {
+function checkOven(isOvenHot) {
     return new Promise((resolve, reject) => {
-        if (passwort.length < 8) {
-            console.log("Passwort zu kurz, werde rejecten");
-            return reject("Passwort zu kurz");
+        console.log("Prüfe Ofen...");
+        if (isOvenHot) {
+            resolve("Ofen ist heiß!");
+        } else {
+            reject("Ofen ist noch kalt");
         }
-        console.log("Passwort ist sicher genug");
-        return resolve("Login erlaubt");
     });
 }
 
-checkPasswort("abc")
-    .then((r) => {
-        console.log(`Passwort "abc", r = ${r}`);
-    })
-    .catch((e) => { console.error(`Fehler bei "abc": ${e}`); });
+function bakePizza(pizzaName) {
+    return new Promise((resolve, reject) => {
+        console.log("Backe " + pizzaName + "...");
+        if (!pizzaName) {
+            reject("Pizza-Name darf nicht leer sein");
+        } else {
+            resolve(pizzaName + " ist fertig! ");
+        }
+    });
+}
 
-checkPasswort("sicherespasswort")
-    .then((r) => {
-        console.log(`Passwort "sicherespasswort", r = ${r}`);
-    })
-    .catch((e) => { console.error(`Fehler bei "sicherespasswort": ${e}`); });
+console.log("=== Pizza-Service mit Promise-Chaining ===");
 
-console.log("Promises erstellt");
+checkOven(true)
+    .then((result) => {
+        console.log(result);
+        return bakePizza("Margherita");
+    })
+    .then((result) => {
+        console.log(result);
+        console.log("Alles fertig! Genieße deine Pizza.");
+    })
+    .catch((error) => {
+        console.error("FEHLER:", error);
+    });
+
+console.log("Promises erstellt (läuft asynchron)");

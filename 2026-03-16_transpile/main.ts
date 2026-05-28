@@ -39,6 +39,35 @@ app.get("/:path{.+\\.ts$}", async (c) => {
 
 app.use("/*", serveStatic({ root: "./static" }));
 
+// === REST-Endpunkte (demonstrieren async/await Nutzung) ===
 
+// GET /hallo - einfacher String-Response
+app.get("/hallo", async (c: Context) => {
+    return c.json({
+        message: "Hallo von async/await Endpoint!",
+        timestamp: new Date().toISOString(),
+    });
+});
+
+// GET /essen - ruft Daten aus der Datenbank ab
+app.get("/essen", async (c: Context) => {
+    try {
+        const rows = db.prepare(`
+            SELECT name, essen
+            FROM dummy;
+        `).all();
+        return c.json({
+            success: true,
+            data: rows,
+            count: rows.length,
+        });
+    } catch (error) {
+        const message = error instanceof Error ? error.message : String(error);
+        return c.json({
+            success: false,
+            error: message,
+        }, 500);
+    }
+});
 
 Deno.serve(app.fetch);

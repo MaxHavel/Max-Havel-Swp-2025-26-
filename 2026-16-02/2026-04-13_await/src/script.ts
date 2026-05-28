@@ -1,20 +1,24 @@
 /// <reference lib="dom" />
 
+console.log("globalThis === window:", globalThis === window);
+console.log("globalThis.document === document:", globalThis.document === document);
+console.log("globalThis.fetch === fetch:", globalThis.fetch === fetch);
+
 const url =
     "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/123.png";
 
 const bilder: HTMLImageElement[] = [];
 
 async function holePokemon() {
-    const response = await fetch(url);
+    const response = await globalThis.fetch(url);
     if (!response.ok) {
         throw new Error("Fehler beim Abrufen des Pokemons: " + response.status);
     }
     const blob = await response.blob();
     const imgUrl = URL.createObjectURL(blob);
-    const img = document.createElement("img");
+    const img = globalThis.document.createElement("img");
     img.src = imgUrl;
-    document.body.appendChild(img);
+    globalThis.document.body.appendChild(img);
     bilder.push(img);
 }
 
