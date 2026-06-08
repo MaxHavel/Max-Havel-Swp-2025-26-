@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 
 <head>
   <meta charset="UTF-8">
@@ -9,41 +9,62 @@
         href="style.css">
   <script type="module"
           src="script.ts"></script>
-  <title>essen</title>
+  <title>Transpile / async / await - ms Demo</title>
 </head>
 
 <body>
-  <h1>Essensliste</h1>
-  <button id="hole-essen">Hole Essen</button>
-  <button id="loesche-essen">Lösche Essen</button>
-  
-  <hr>
-  
-  <h2>ms-Paket Demo</h2>
-  <input type="text"
-         id="ms-input"
-         placeholder="Zeit eingeben (z.B. '2 days', '1h 30m')">
-  <button id="ms-button">Zeit umrechnen</button>
-  <p id="ms-output"></p>
-  
-  <hr>
-  
-  <h2>async/await Demo</h2>
-  <button id="fetch-hallo">Fetch /hallo</button>
-  <button id="fetch-essen">Fetch /essen</button>
-  <p id="async-output"></p>
-  
-  <hr>
-  
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Essen</th>
-      </tr>
-    </thead>
-    <tbody id="tabelle"></tbody>
-  </table>
+  <div class="container">
+    <h1>🎯 TypeScript Transpile & Async/Await Demo</h1>
+    
+    <section class="section">
+      <h2>1️⃣ ms-Paket Demo (npm:ms)</h2>
+      <p class="description">Das ms-Paket konvertiert Zeitangaben in Millisekunden</p>
+      <div class="form-group">
+        <input type="text"
+               id="ms-input"
+               placeholder="Zeitangabe eingeben (z.B. '2 days', '1h 30m', '5000')"
+               value="1h">
+        <button id="ms-button">Zeit umrechnen</button>
+      </div>
+      <div class="output-box">
+        <p id="ms-output">Ergebnis wird hier angezeigt...</p>
+      </div>
+    </section>
+
+    <hr>
+
+    <section class="section">
+      <h2>2️⃣ async/await REST-Endpoints</h2>
+      <p class="description">Demonstriert async/await mit serverseitigen Endpoints</p>
+      <div class="button-group">
+        <button id="fetch-hallo">GET /hallo</button>
+        <button id="fetch-essen">GET /essen</button>
+      </div>
+      <div class="output-box">
+        <p id="async-output">Klicke einen Button um Daten zu laden...</p>
+      </div>
+    </section>
+
+    <hr>
+
+    <section class="section">
+      <h2>3️⃣ Essensliste aus Datenbank</h2>
+      <p class="description">Lädt Daten vom Server und zeigt sie in einer Tabelle</p>
+      <div class="button-group">
+        <button id="hole-essen">🍽️ Essen laden</button>
+        <button id="loesche-essen">🗑️ Tabelle löschen</button>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Essen</th>
+          </tr>
+        </thead>
+        <tbody id="tabelle"></tbody>
+      </table>
+    </section>
+  </div>
 </body>
 
 </html>

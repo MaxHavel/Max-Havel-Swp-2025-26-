@@ -5,37 +5,210 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Response-Objekt: .json() und .text()</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
-        button { margin: 10px; padding: 10px 20px; font-size: 16px; cursor: pointer; }
-        pre { background: #f4f4f4; padding: 15px; border-radius: 8px; max-width: 600px; margin: 20px auto; text-align: left; overflow-x: auto; }
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 20px; 
+            background-color: #f9f9f9;
+        }
+        h1 { color: #333; }
+        .button-container {
+            margin: 20px 0;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        button { 
+            padding: 10px 20px; 
+            font-size: 16px; 
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        button:hover { background-color: #0056b3; }
+        button:active { background-color: #003d82; }
+        .delete-btn { background-color: #dc3545; }
+        .delete-btn:hover { background-color: #c82333; }
+        pre { 
+            background: #f4f4f4; 
+            padding: 15px; 
+            border-radius: 8px; 
+            max-width: 800px; 
+            text-align: left; 
+            overflow-x: auto;
+            border: 1px solid #ddd;
+            font-size: 14px;
+        }
+        .section {
+            margin-bottom: 30px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .info {
+            background-color: #e7f3ff;
+            border-left: 4px solid #2196F3;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
     </style>
 </head>
 <body>
     <h1>Response-Objekt: .json() vs .text()</h1>
-    <button id="btn-json">.json() abrufen</button>
-    <button id="btn-text">.text() abrufen</button>
-    <pre id="output">Klicke einen Button</pre>
+    
+    <div class="info">
+        <strong>Info:</strong> Dieses Beispiel demonstriert den Unterschied zwischen .json() und .text() Methoden des Response-Objekts.
+    </div>
+
+    <div class="section">
+        <h2>1. Externe API Daten auslesen</h2>
+        <div class="button-container">
+            <button id="btn-json">.json() abrufen</button>
+            <button id="btn-text">.text() abrufen</button>
+            <button id="btn-status">Status Code prüfen</button>
+        </div>
+        <pre id="output">Klicke einen Button, um Daten abzurufen...</pre>
+    </div>
+
+    <div class="section">
+        <h2>2. Daten mit DELETE Request löschen</h2>
+        <div class="button-container">
+            <button class="delete-btn" id="btn-delete">Daten vom Server löschen</button>
+            <button id="btn-list">Verfügbare Ressourcen auflisten</button>
+        </div>
+        <pre id="delete-output">Klicke einen Button, um Daten zu löschen...</pre>
+    </div>
 
     <script>
         const output = document.getElementById("output");
+        const deleteOutput = document.getElementById("delete-output");
 
+        // Demonstrationsdaten (JSONPlaceholder API)
+        const API_URL = "https://jsonplaceholder.typicode.com/todos/1";
+        const DELETE_URL = "https://jsonplaceholder.typicode.com/posts/1";
+
+        // 1. .json() abrufen - Parst Response als JSON
         document.getElementById("btn-json").addEventListener("click", async () => {
             try {
-                const res = await fetch("https://jsonplaceholder.typicode.com/todos/1");
-                output.textContent = "Status: " + res.status + "\n\n.json():\n" + JSON.stringify(await res.json(), null, 2);
+                output.textContent = "Laden...";
+                const res = await fetch(API_URL);
+                
+                if (!res.ok) {
+                    throw new Error(`HTTP Fehler! Status: ${res.status}`);
+                }
+                
+                // .json() parst den Response Body als JSON
+                const data = await res.json();
+                
+                output.textContent = `Status: ${res.status} ${res.statusText}\n\n` +
+                                     `.json() Ergebnis:\n\n` +
+                                     JSON.stringify(data, null, 2) +
+                                     `\n\nTyp des Response: ${typeof data}`;
             } catch (e) {
-                output.textContent = "Fehler: " + e.message;
+                output.textContent = "Fehler: " + (e instanceof Error ? e.message : String(e));
             }
         });
 
+        // 2. .text() abrufen - Liefert rohen Text
         document.getElementById("btn-text").addEventListener("click", async () => {
             try {
-                const res = await fetch("https://jsonplaceholder.typicode.com/todos/1");
-                output.textContent = "Status: " + res.status + "\n\n.text():\n" + await res.text();
+                output.textContent = "Laden...";
+                const res = await fetch(API_URL);
+                
+                if (!res.ok) {
+                    throw new Error(`HTTP Fehler! Status: ${res.status}`);
+                }
+                
+                // .text() gibt den rohen Response-Text zurück
+                const text = await res.text();
+                
+                output.textContent = `Status: ${res.status} ${res.statusText}\n\n` +
+                                     `.text() Ergebnis:\n\n` +
+                                     text +
+                                     `\n\nTyp des Response: string`;
             } catch (e) {
-                output.textContent = "Fehler: " + e.message;
+                output.textContent = "Fehler: " + (e instanceof Error ? e.message : String(e));
             }
         });
+
+        // 3. Status Code prüfen
+        document.getElementById("btn-status").addEventListener("click", async () => {
+            try {
+                output.textContent = "Prüfe Status...";
+                const res = await fetch(API_URL);
+                
+                output.textContent = `HTTP Status Code: ${res.status}\n` +
+                                     `Status Text: ${res.statusText}\n` +
+                                     `OK: ${res.ok}\n` +
+                                     `Content-Type: ${res.headers.get('content-type')}\n\n` +
+                                     `Response Headers:` +
+                                     Array.from(res.headers.entries())
+                                        .map(([k, v]) => `\n  ${k}: ${v}`)
+                                        .join('');
+            } catch (e) {
+                output.textContent = "Fehler: " + (e instanceof Error ? e.message : String(e));
+            }
+        });
+
+        // 4. DELETE Request - serverseitige Löschung
+        document.getElementById("btn-delete").addEventListener("click", async () => {
+            try {
+                deleteOutput.textContent = "Sende DELETE Request...";
+                
+                const res = await fetch(DELETE_URL, {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
+                    }
+                });
+                
+                if (!res.ok) {
+                    throw new Error(`HTTP Fehler! Status: ${res.status}`);
+                }
+                
+                // Response kann leer sein bei DELETE
+                const responseText = await res.text();
+                
+                deleteOutput.textContent = `DELETE Request erfolgreich!\n\n` +
+                                          `Status: ${res.status} ${res.statusText}\n` +
+                                          `Response Länge: ${responseText.length} Zeichen\n` +
+                                          `Response Body: ${responseText || "(leer - normal bei DELETE)"}`;
+            } catch (e) {
+                deleteOutput.textContent = "Fehler: " + (e instanceof Error ? e.message : String(e));
+            }
+        });
+
+        // 5. Verfügbare Ressourcen auflisten
+        document.getElementById("btn-list").addEventListener("click", async () => {
+            try {
+                deleteOutput.textContent = "Lade Ressourcenliste...";
+                
+                const res = await fetch("https://jsonplaceholder.typicode.com/posts?_limit=5");
+                
+                if (!res.ok) {
+                    throw new Error(`HTTP Fehler! Status: ${res.status}`);
+                }
+                
+                // Nutze .json() um Array zu parsen
+                const posts = await res.json();
+                
+                const list = posts.map((p, i) => 
+                    `${i + 1}. Post ID ${p.id}: "${p.title.substring(0, 50)}..."`
+                ).join('\n');
+                
+                deleteOutput.textContent = `Verfügbare Posts (insgesamt ${posts.length}):\n\n${list}\n\n` +
+                                          `Diese können mit DELETE /posts/{id} gelöscht werden.`;
+            } catch (e) {
+                deleteOutput.textContent = "Fehler: " + (e instanceof Error ? e.message : String(e));
+            }
+        });
+
+        // Initial-Nachricht
+        output.textContent = "Willkommen! Wähle oben eine Operation aus.";
     </script>
 </body>
 </html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizza-Service mit Promise-Chaining</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #667eea;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #667eea;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #764ba2;
+        }
+        button:active {
+            background-color: #5568d3;
+        }
+        #output {
+            background-color: #f5f5f5;
+            padding: 20px;
+            border-radius: 4px;
+            border-left: 4px solid #667eea;
+            font-family: 'Courier New', monospace;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            min-height: 150px;
+            line-height: 1.5;
+        }
+        .success {
+            color: #28a745;
+            font-weight: bold;
+        }
+        .error {
+            color: #dc3545;
+            font-weight: bold;
+        }
+        .info {
+            background-color: #e7f3ff;
+            border-left: 4px solid #2196F3;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🍕 Pizza-Service mit Promise-Chaining 🍕</h1>
+        
+        <div class="info">
+            <strong>Demonstation:</strong> Dieser Service zeigt Promise-Chaining mit checkOven() → bakePizza() → Erfolg/Fehler-Handling.
+        </div>
+
+        <div class="button-group">
+            <button onclick="startPizzaService()">Pizza machen (Ofen heiß)</button>
+            <button onclick="failedPizza()">Pizza machen (Ofen kalt)</button>
+            <button onclick="clearOutput()">Ausgabe löschen</button>
+        </div>
+
+        <pre id="output">Klicke auf einen Button...</pre>
+    </div>
+
+    <script src="promis.js"></script>
+    <script>
+        const output = document.getElementById("output");
+        let logHistory = [];
+
+        function log(message, type = "normal") {
+            const timestamp = new Date().toLocaleTimeString();
+            const prefix = type === "success" ? "✓ " : type === "error" ? "✗ " : "→ ";
+            const formatted = `[${timestamp}] ${prefix}${message}`;
+            
+            logHistory.push(formatted);
+            output.innerHTML = logHistory.map(msg => {
+                if (msg.includes("✓")) return `<span class="success">${msg}</span>`;
+                if (msg.includes("✗")) return `<span class="error">${msg}</span>`;
+                return msg;
+            }).join("\n");
+        }
+
+        function clearOutput() {
+            logHistory = [];
+            output.textContent = "Ausgabe geleert. Starten Sie eine neue Pizza!";
+        }
+
+        function startPizzaService() {
+            clearOutput();
+            log("=== Pizza-Service gestartet ===");
+            log("Starte Promise-Chaining: checkOven(true)");
+
+            checkOven(true)
+                .then((result) => {
+                    log(`Ofen-Check erfolgreich: ${result}`, "success");
+                    log("Starte bakePizza('Margherita')...");
+                    return bakePizza("Margherita");
+                })
+                .then((result) => {
+                    log(`Backen erfolgreich: ${result}`, "success");
+                    log("=== Pizza fertig! Guten Appetit! ===", "success");
+                })
+                .catch((error) => {
+                    log(`FEHLER: ${error}`, "error");
+                });
+        }
+
+        function failedPizza() {
+            clearOutput();
+            log("=== Pizza-Service gestartet (mit Fehler) ===");
+            log("Starte Promise-Chaining: checkOven(false)");
+
+            checkOven(false)
+                .then((result) => {
+                    log(`Ofen-Check erfolgreich: ${result}`, "success");
+                    log("Starte bakePizza('Margherita')...");
+                    return bakePizza("Margherita");
+                })
+                .then((result) => {
+                    log(`Backen erfolgreich: ${result}`, "success");
+                    log("=== Pizza fertig! Guten Appetit! ===", "success");
+                })
+                .catch((error) => {
+                    log(`FEHLER: ${error}`, "error");
+                    log("Pizza konnte nicht gebacken werden!");
+                });
+        }
+
+        // Log beim initialen Laden
+        log("Pizza-Service bereit!");
+    </script>
+</body>
+</html>

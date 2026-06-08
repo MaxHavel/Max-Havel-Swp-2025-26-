@@ -1,0 +1,52 @@
+# KI-Provider Konfiguration
+
+# Provider 1: OpenAI GPT
+# Kostenlos: Begrenzte Free Trial, dann kostenpflichtig
+# Modelle: gpt-3.5-turbo, gpt-4
+# URL: https://platform.openai.com
+PROVIDER_1_NAME=OpenAI
+PROVIDER_1_TYPE=Commercial
+PROVIDER_1_URL=https://api.openai.com/v1/chat/completions
+PROVIDER_1_AUTH_TYPE=Bearer Token
+PROVIDER_1_KEY_ENV=OPENAI_API_KEY
+PROVIDER_1_FREE_TIER=5$ Credits
+PROVIDER_1_MODELS=gpt-3.5-turbo,gpt-4,gpt-4-turbo
+
+# Provider 2: Google Gemini (ehemals Bard)
+# Kostenlos: Gemini API hat kostenlosen Tier mit Limits
+# Modelle: Gemini Pro, Gemini Vision
+# URL: https://makersuite.google.com/app/apikey
+PROVIDER_2_NAME=Google Gemini
+PROVIDER_2_TYPE=Free Tier Available
+PROVIDER_2_URL=https://generativelanguage.googleapis.com/v1beta/models
+PROVIDER_2_AUTH_TYPE=API Key
+PROVIDER_2_KEY_ENV=GOOGLE_API_KEY
+PROVIDER_2_FREE_TIER=60 Requests per Minute
+PROVIDER_2_MODELS=gemini-pro,gemini-1.5-pro,gemini-1.5-flash
+
+# Provider 3: Anthropic Claude
+# Kostenlos: Paid only, aber mit Claude.ai kostenlos nutzbar
+# Modelle: Claude 3 Opus, Claude 3 Sonnet, Claude 3 Haiku
+# URL: https://console.anthropic.com
+PROVIDER_3_NAME=Anthropic Claude
+PROVIDER_3_TYPE=Free via Web Interface
+PROVIDER_3_URL=https://api.anthropic.com/v1/messages
+PROVIDER_3_AUTH_TYPE=Bearer Token
+PROVIDER_3_KEY_ENV=ANTHROPIC_API_KEY
+PROVIDER_3_FREE_TIER=Claude.ai WebUI (kostenlos)
+PROVIDER_3_MODELS=claude-3-opus,claude-3-sonnet,claude-3-haiku
+
+# Provider 4: Hugging Face
+# Kostenlos: Inference API mit kostenlosen Limits
+# Modelle: Mistral, Llama, Phi
+# URL: https://huggingface.co
+PROVIDER_4_NAME=Hugging Face
+PROVIDER_4_TYPE=Free Tier + Open Source
+PROVIDER_4_URL=https://api-inference.huggingface.co/models
+PROVIDER_4_AUTH_TYPE=Bearer Token
+PROVIDER_4_KEY_ENV=HUGGINGFACE_API_KEY
+PROVIDER_4_FREE_TIER=32k tokens/Monat
+PROVIDER_4_MODELS=mistralai/Mistral-7B,meta-llama/Llama-2,microsoft/phi
+
+# Zusammenfassung der Test-Ergebnisse
+# Siehe: Ki_Models_Speed.md
